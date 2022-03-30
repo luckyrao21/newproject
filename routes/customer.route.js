@@ -30,4 +30,15 @@ route.post("/signin",(request,response)=>{
         return response.status(500).json({message:"oops something went wrong"})
     })
 })
+
+route.get("/customer-list",(request,response)=>{
+    console.log(request.body);
+    customer.find().then(result=>{
+        console.log(result);
+        return response.status(201).json({message:"login success",result})
+    }).catch(err=>{
+        console.log(err);
+        return response.status(500).json({message:"oops something went wrong"})
+    })
+})
 module.exports=route;
