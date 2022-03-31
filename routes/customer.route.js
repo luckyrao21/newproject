@@ -35,7 +35,7 @@ route.get("/customer-list",(request,response)=>{
     console.log(request.body);
     customer.find().then(result=>{
         console.log(result);
-        return response.status(201).json({result:result})
+        return response.status(201).json(result)
     }).catch(err=>{
         console.log(err);
         return response.status(500).json({message:"oops something went wrong"})
