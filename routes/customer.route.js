@@ -24,10 +24,10 @@ route.post("/signin",(request,response)=>{
         password:request.body.password
     }).then(result=>{
         console.log(result);
-        return response.status(201).json({message:"login success",result})
+        return response.status(201).json(result)
     }).catch(err=>{
         console.log(err);
-        return response.status(500).json({message:"oops something went wrong"})
+        return response.status(500).json({error:"oops something went wrong"})
     })
 })
 
