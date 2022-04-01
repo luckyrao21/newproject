@@ -3,6 +3,8 @@ const { response } = require("express");
 const express=require("express");
 const customer=require("../model/customer.model")
 const category=require('../model/category.model')
+const jwt=require("jsonwebtoken");
+
 const multer=require('multer')
 const route=express.Router();
 
@@ -38,9 +40,16 @@ route.post("/signin",(request,response)=>{
     }).then(result=>{
         console.log(result);
         
-        if(!result)
-        return response.status(201).json({message:"invailid user"})
-        return response.status(201).json(result)
+        if(result){
+            let payload={subject:result._id}
+            let token=jwt.sign(payload,"dsfdsfgsgfdsiohgoihdhhgdghid")
+            console.log(token)
+            return response.status(201).json(result)
+        }
+        else{
+            return response.status(500).json({message:"login failed"})
+        }
+        
     }).catch(err=>{
         console.log(err);
         return response.status(500).json({error:"oops something went wrong"})
