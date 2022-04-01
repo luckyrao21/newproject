@@ -24,6 +24,9 @@ route.post("/signin",(request,response)=>{
         password:request.body.password
     }).then(result=>{
         console.log(result);
+        
+        if(!result)
+        return response.status(201).json({message:"invailid user"})
         return response.status(201).json(result)
     }).catch(err=>{
         console.log(err);
