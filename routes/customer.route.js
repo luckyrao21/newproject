@@ -2,6 +2,7 @@ const { request } = require("express");
 const { response } = require("express");
 const express=require("express");
 const customer=require("../model/customer.model")
+const multer=require('multer')
 const route=express.Router();
 
 var storage=multer.diskStorage({
