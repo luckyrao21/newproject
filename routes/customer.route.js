@@ -44,7 +44,7 @@ route.post("/signin",(request,response)=>{
             let payload={subject:result._id}
             let token=jwt.sign(payload,"dsfdsfgsgfdsiohgoihdhhgdghid")
          console.log(token)
-            return response.status(201).json({"jwt-token":token,result})
+            return response.status(201).json({"token":token,result})
         }
         else{
             return response.status(500).json({message:"login failed"})
