@@ -51,7 +51,7 @@ route.post("/add-category",upload.single("categoryImage"),(request,response)=>{
         console.log(request.file.filename);
         category.create({
             categoryName:request.body.categoryName,
-            categoryImage:"http://localhost:3000/images/"+request.file.filename
+            categoryImage:"https://newproject0.herokuapp.com/images/"+request.file.filename
 
         }).then(result=>{
             console.log(result);
