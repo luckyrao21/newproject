@@ -1,7 +1,6 @@
 const express=require('express');
 const mongoose=require('mongoose');
 const customerRoute=require('./routes/customer.route')
-const multer=require('multer');
 const bodyparser=require('body-parser')
 const cors=require('cors')
 const port=process.env.PORT||3000;
