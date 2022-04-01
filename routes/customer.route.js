@@ -1,6 +1,17 @@
+const { request } = require("express");
+const { response } = require("express");
 const express=require("express");
 const customer=require("../model/customer.model")
 const route=express.Router();
+
+var storage=multer.diskStorage({
+    destination:'public/images',
+    filename:function(request,file,cb){
+        cb(null,Date.now()+'-'+file.originalname)
+    }
+});
+var upload=multer({storage:storage});
+
 
 route.post("/signup",(request,response)=>{
         console.log(request.body);
@@ -24,11 +35,19 @@ route.post("/signin",(request,response)=>{
         password:request.body.password
     }).then(result=>{
         console.log(result);
+        
+        if(!result)
+        return response.status(201).json({message:"invailid user"})
         return response.status(201).json(result)
     }).catch(err=>{
         console.log(err);
         return response.status(500).json({error:"oops something went wrong"})
     })
+})
+
+route.post("/add-category",upload.single("categoryImage"),(request,response)=>{
+        console.log(request.filename)
+        
 })
 
 route.get("/customer-list",(request,response)=>{
@@ -41,4 +60,5 @@ route.get("/customer-list",(request,response)=>{
         return response.status(500).json({message:"oops something went wrong"})
     })
 })
+
 module.exports=route;
