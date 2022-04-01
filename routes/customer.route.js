@@ -51,7 +51,7 @@ route.post("/add-category",upload.single("categoryImage"),(request,response)=>{
         console.log(request.file.filename);
         category.create({
             categoryName:request.body.categoryName,
-            categoryImage:request.file.filename
+            categoryImage:"http://localhost:3000/images/"+request.file.filename
 
         }).then(result=>{
             console.log(result);
