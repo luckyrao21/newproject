@@ -2,6 +2,7 @@ const { request } = require("express");
 const { response } = require("express");
 const express=require("express");
 const customer=require("../model/customer.model")
+const category=require('../model/category.model')
 const multer=require('multer')
 const route=express.Router();
 
@@ -47,7 +48,18 @@ route.post("/signin",(request,response)=>{
 })
 
 route.post("/add-category",upload.single("categoryImage"),(request,response)=>{
-        console.log(request.filename)
+        console.log(request.file.filename);
+        category.create({
+            categoryName:request.body.categoryName,
+            categoryImage:request.file.filename
+
+        }).then(result=>{
+            console.log(result);
+            return response.status(201).json(result)
+        }).catch(err=>{
+            console.log(err)
+            return response.status(500).json({message:"oops somethig went wrong"})
+        })
         
 })
 
