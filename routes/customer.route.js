@@ -44,15 +44,15 @@ route.post("/signin",(request,response)=>{
             let payload={subject:result._id}
             let token=jwt.sign(payload,"dsfdsfgsgfdsiohgoihdhhgdghid")
             console.log(token)
-            return response.status(201).json({"token":token,"result":result})
+            return response.status(200).json({"token":token,"result":result})
         }
         else{
-            return response.status(500).json({err:"login failed"})
+            return response.status(200).json({err:"login failed"})
         }
         
     }).catch(err=>{
         console.log(err);
-        return response.status(500).json({error:"oops something went wrong"})
+        return response.status(500).json({err:"oops something went wrong"})
     })
 })
 
