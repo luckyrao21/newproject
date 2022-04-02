@@ -47,7 +47,7 @@ route.post("/signin",(request,response)=>{
             return response.status(201).json({"token":token,"result":result})
         }
         else{
-            return response.status(500).json({message:"login failed"})
+            return response.status(500).json({err:"login failed"})
         }
         
     }).catch(err=>{
